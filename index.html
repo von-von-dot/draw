@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Widmer – Mobile Fusion v4</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<button id="toggle" class="toggle">Réglages</button>
+
+<div class="stage">
+  <div class="canvaswrap">
+    <canvas id="cv" aria-label="Dessin"></canvas>
+    <div class="status" id="status">0 pts</div>
+  </div>
+
+  <div class="panel" id="panel">
+    <h3>Outil</h3>
+    <div class="rowbtn">
+      <button id="drawBtn" class="active">Dessiner</button>
+      <button id="eraseBtn">Effacer</button>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>Grille</h3>
+    <label>Colonnes <span class="val" id="colsVal">20</span>
+      <input id="cols" type="range" min="6" max="60" value="20"/>
+    </label>
+    <label>Lignes <span class="val" id="rowsVal">20</span>
+      <input id="rows" type="range" min="6" max="60" value="20"/>
+    </label>
+    <div class="rowcheck">
+      <label><input id="showGrid" type="checkbox" checked/> Afficher la grille</label>
+      <label><input id="snap" type="checkbox" checked/> Snap</label>
+    </div>
+    <div class="rowcheck">
+      <label><input id="symV" type="checkbox"/> Symétrie V</label>
+      <label><input id="symH" type="checkbox"/> Symétrie H</label>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>Fusion visuelle</h3>
+    <label>Rayon <span class="val" id="radiusVal">50</span>
+      <input id="radius" type="range" min="10" max="140" value="50"/>
+    </label>
+    <label>Distance fusion <span class="val" id="fusionVal">60</span>
+      <input id="fusion" type="range" min="0" max="160" value="60"/>
+    </label>
+    <label>Seuil (iso) <span class="val" id="isoVal">1.00</span>
+      <input id="iso" type="range" min="0.6" max="2.2" step="0.05" value="1.0"/>
+    </label>
+    <label>Qualité (pendant dessin) <span class="val" id="qVal">3.2</span>
+      <input id="q" type="range" min="2.2" max="4.2" step="0.1" value="3.2"/>
+    </label>
+
+    <div class="divider"></div>
+
+    <h3>Affichage / Export</h3>
+    <div class="rowcheck">
+      <label><input id="bgWhite" type="checkbox" checked/> Fond blanc</label>
+      <label><input id="neg" type="checkbox"/> Négatif</label>
+    </div>
+    <div class="rowcheck">
+      <label><input id="exportBg" type="checkbox"/> Fond à l’export</label>
+      <label><input id="showAnchors" type="checkbox" checked/> Points</label>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>Fichier</h3>
+    <div class="rowbtn">
+      <button id="undoBtn">Undo</button>
+      <button id="redoBtn">Redo</button>
+    </div>
+    <div class="rowbtn">
+      <button id="saveBtn">Sauver</button>
+      <button id="loadBtn">Charger</button>
+    </div>
+    <div class="rowbtn">
+      <button id="exportBtn" class="primary">PNG</button>
+      <button id="shareBtn">Partager</button>
+      <button id="clearBtn" class="danger">Vider</button>
+    </div>
+    <input id="fileLoad" type="file" accept="application/json" style="display:none"/>
+    <p class="hint">Un doigt = dessiner. Deux doigts = scroller la page.</p>
+  </div>
+</div>
+
+<nav class="bottombar">
+  <button id="mbUndo" class="btn">Undo</button>
+  <button id="mbRedo" class="btn">Redo</button>
+  <button id="mbSave" class="btn">Sauver</button>
+  <button id="mbLoad" class="btn">Charger</button>
+  <button id="mbExport" class="btn primary">PNG</button>
+  <button id="mbShare" class="btn">Partager</button>
+</nav>
+<div id="toast" class="toast" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
