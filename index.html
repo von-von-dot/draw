@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Widmer Grid — Advanced v3</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">W</div>
+        <div class="titles">
+          <div class="t1">Widmer Grid</div>
+          <div class="t2">Advanced v3 (point / fusion visuelle / fusion vecteur / pixel)</div>
+        </div>
+      </div>
+      <div class="actions">
+        
+        <button id="btnUndo" class="btn">Undo</button>
+        <button id="btnRedo" class="btn">Redo</button>
+        <button id="btnSave" class="btn">Sauver</button>
+        <button id="btnLoad" class="btn">Charger</button>
+        <input id="fileLoad" type="file" accept="application/json" style="display:none" />
+<button id="btnClear" class="btn">Effacer</button>
+        <button id="btnExportSvg" class="btn">Exporter SVG</button>
+        <button id="btnExportPng" class="btn primary">Exporter PNG</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <aside class="panel">
+        <h2>Grille</h2>
+
+        <div class="row">
+          <label>Colonnes</label>
+          <input id="cols" type="range" min="6" max="60" value="12" />
+          <span id="colsVal" class="val">12</span>
+        </div>
+        <div class="row">
+          <label>Lignes</label>
+          <input id="rows" type="range" min="6" max="60" value="12" />
+          <span id="rowsVal" class="val">12</span>
+        </div>
+        <div class="row">
+          <label>Marge Widmer</label>
+          <input id="margin" type="range" min="0" max="6" value="1" />
+          <span id="marginVal" class="val">1</span>
+        </div>
+
+        <div class="row">
+          <label>Afficher grille</label>
+          <input id="showGrid" type="checkbox" checked />
+          <span class="val"></span>
+        </div>
+        <div class="row">
+          <label>Snap grille</label>
+          <input id="snap" type="checkbox" checked />
+          <span class="val"></span>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2>Affichage</h2>
+        <div class="row">
+          <label>Fond blanc</label>
+          <input id="bgWhite" type="checkbox" checked />
+          <span class="val"></span>
+        </div>
+        <div class="row">
+          <label>Négatif</label>
+          <input id="neg" type="checkbox" />
+          <span class="val"></span>
+        </div>
+        <div class="row">
+          <label>Fond à l’export</label>
+          <input id="exportBg" type="checkbox" />
+          <span class="val"></span>
+        </div>
+
+<div class="divider"></div>
+
+        <h2>Mode</h2>
+        <div class="seg" id="toolSeg">
+          <button type="button" class="segbtn active" data-mode="point">Point</button>
+          <button type="button" class="segbtn" data-mode="fusionVisual">Fusion visuelle</button>
+          <button type="button" class="segbtn" data-mode="metaball">Fusion vecteur</button>
+          <button type="button" class="segbtn" data-mode="pixel">Pixel</button>
+        </div>
+
+        <div class="mobiletools" id="touchToolSeg" aria-label="Outils tactiles">
+          <button type="button" class="toolbtn active" data-tool="draw">Dessiner</button>
+          <button type="button" class="toolbtn" data-tool="erase">Effacer</button>
+        </div>
+        <div class="mobilehint">Sur mobile : utilise <b>Dessiner/Effacer</b> (pas de touche Shift).</div>
+
+
+        <div class="row">
+          <label>Symétrie verticale</label>
+          <input id="symV" type="checkbox" />
+          <span class="val"></span>
+        </div>
+        <div class="row">
+          <label>Symétrie horizontale</label>
+          <input id="symH" type="checkbox" />
+          <span class="val"></span>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2>Réglages points</h2>
+
+        <div class="row">
+          <label>Rayon</label>
+          <input id="radius" type="range" min="4" max="140" value="28" />
+          <span id="radiusVal" class="val">28</span>
+        </div>
+
+        <div class="row">
+          <label>Distance fusion</label>
+          <input id="fusion" type="range" min="0" max="160" value="14" />
+          <span id="fusionVal" class="val">14</span>
+        </div>
+
+        <div class="row">
+          <label>Seuil (iso)</label>
+          <input id="iso" type="range" min="0.5" max="2.5" step="0.05" value="1.0" />
+          <span id="isoVal" class="val">1.00</span>
+        </div>
+
+        <div class="row">
+          <label>Échantillonnage</label>
+          <input id="res" type="range" min="4" max="48" value="12" />
+          <span id="resVal" class="val">12</span>
+        </div>
+
+        <div class="row">
+          <label>Simplification</label>
+          <input id="simplify" type="range" min="0" max="12" value="6" />
+          <span id="simplifyVal" class="val">6</span>
+        </div>
+
+        <div class="row">
+          <label>Arrondi</label>
+          <input id="smooth" type="range" min="0" max="1" step="0.05" value="0.35" />
+          <span id="smoothVal" class="val">0.35</span>
+        </div>
+
+        <div class="row">
+          <label>Ancrages (aperçu)</label>
+          <input id="showAnchors" type="checkbox" />
+          <span class="val"></span>
+        </div>
+
+        <p class="hint">
+          <b>Alt+clic</b> ignore le snap (modes Point/Fusions).<br>
+          <b>Option A :</b> export PNG/SVG = <b>forme seule</b> (pas de grille).
+        </p>
+      </aside>
+
+      <section class="stage">
+        <button id="btnTogglePanel" class="paneltoggle" type="button" aria-label="Ouvrir/fermer les réglages">Réglages</button>
+        <div class="canvaswrap">
+          <canvas id="canvas" width="900" height="900"></canvas>
+          <div id="status" class="status">0</div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottombar" id="bottombar">
+      <button id="mbUndo" class="btn">Undo</button>
+      <button id="mbRedo" class="btn">Redo</button>
+      <button id="mbSave" class="btn">Sauver</button>
+      <button id="mbLoad" class="btn">Charger</button>
+      <button id="mbExport" class="btn primary">PNG</button>
+    </nav>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
