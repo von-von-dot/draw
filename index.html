@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Widmer – Fusion visuelle (mobile)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button id="btnToggle" class="paneltoggle" type="button">Réglages</button>
+
+  <main class="stage">
+    <div class="canvaswrap">
+      <canvas id="cv" width="900" height="900" aria-label="Zone de dessin"></canvas>
+      <div class="status" id="status">0 points</div>
+    </div>
+
+    <aside class="panel collapsed" id="panel">
+      <h2>Mode</h2>
+      <div class="mobiletools" id="touchToolSeg">
+        <button type="button" class="toolbtn active" data-tool="draw">Dessiner</button>
+        <button type="button" class="toolbtn" data-tool="erase">Effacer</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Grille</h2>
+      <div class="row">
+        <label>Colonnes</label>
+        <input id="cols" type="range" min="6" max="48" value="20" />
+        <span class="val" id="colsVal">20</span>
+      </div>
+      <div class="row">
+        <label>Lignes</label>
+        <input id="rows" type="range" min="6" max="48" value="20" />
+        <span class="val" id="rowsVal">20</span>
+      </div>
+      <div class="row">
+        <label>Afficher la grille</label>
+        <input id="showGrid" type="checkbox" checked />
+        <span class="val"></span>
+      </div>
+      <div class="row">
+        <label>Snap grille</label>
+        <input id="snap" type="checkbox" checked />
+        <span class="val"></span>
+      </div>
+      <div class="row">
+        <label>Symétrie verticale</label>
+        <input id="symV" type="checkbox" />
+        <span class="val"></span>
+      </div>
+      <div class="row">
+        <label>Symétrie horizontale</label>
+        <input id="symH" type="checkbox" />
+        <span class="val"></span>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Fusion visuelle</h2>
+      <div class="row">
+        <label>Rayon</label>
+        <input id="radius" type="range" min="8" max="120" value="44" />
+        <span class="val" id="radiusVal">44</span>
+      </div>
+      <div class="row">
+        <label>Distance fusion</label>
+        <input id="fusion" type="range" min="0" max="140" value="60" />
+        <span class="val" id="fusionVal">60</span>
+      </div>
+      <div class="row">
+        <label>Seuil (iso)</label>
+        <input id="iso" type="range" min="0.6" max="2.2" step="0.05" value="1.00" />
+        <span class="val" id="isoVal">1.00</span>
+      </div>
+      <div class="row">
+        <label>Échantillonnage</label>
+        <input id="qual" type="range" min="6" max="28" value="12" />
+        <span class="val" id="qualVal">12</span>
+      </div>
+      <div class="row">
+        <label>Arrondi</label>
+        <input id="smooth" type="range" min="0" max="0.8" step="0.05" value="0.25" />
+        <span class="val" id="smoothVal">0.25</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Affichage</h2>
+      <div class="row">
+        <label>Fond blanc</label>
+        <input id="bgWhite" type="checkbox" checked />
+        <span class="val"></span>
+      </div>
+      <div class="row">
+        <label>Négatif</label>
+        <input id="neg" type="checkbox" />
+        <span class="val"></span>
+      </div>
+      <div class="row">
+        <label>Fond à l’export</label>
+        <input id="exportBg" type="checkbox" />
+        <span class="val"></span>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Fichier</h2>
+      <div class="actions2">
+        <button class="btn" id="btnUndo">Undo</button>
+        <button class="btn" id="btnRedo">Redo</button>
+        <button class="btn" id="btnSave">Sauver</button>
+        <button class="btn" id="btnLoad">Charger</button>
+        <button class="btn danger" id="btnClear">Vider</button>
+      </div>
+      <input id="fileLoad" type="file" accept="application/json" style="display:none" />
+      <p class="hint">Un doigt = dessiner. Deux doigts = scroller la page.</p>
+    </aside>
+  </main>
+
+  <nav class="bottombar" id="bottombar">
+    <button id="mbUndo" class="btn">Undo</button>
+    <button id="mbRedo" class="btn">Redo</button>
+    <button id="mbSave" class="btn">Sauver</button>
+    <button id="mbLoad" class="btn">Charger</button>
+    <button id="mbExport" class="btn primary">PNG</button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>
