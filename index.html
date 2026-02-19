@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Widmer Mobile Fusion v2</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<button id="toggle" class="toggle">Réglages</button>
+
+<div class="stage">
+  <div class="canvaswrap">
+    <canvas id="cv"></canvas>
+  </div>
+
+  <div class="panel" id="panel">
+    <h3>Fusion visuelle</h3>
+    <label>Rayon <input id="radius" type="range" min="10" max="120" value="50"/></label>
+    <label>Distance fusion <input id="fusion" type="range" min="0" max="150" value="60"/></label>
+    <label>Seuil (iso) <input id="iso" type="range" min="0.6" max="2.2" step="0.05" value="1.0"/></label>
+    <div class="rowbtn">
+      <button id="drawBtn" class="active">Dessiner</button>
+      <button id="eraseBtn">Effacer</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
